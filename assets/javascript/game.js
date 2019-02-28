@@ -51,12 +51,7 @@ $(document).ready(function () {
             randomNumber = getRandomInt(1, 12);
 
             console.log(gemImageArray[randomPlacement]);
-            
-            if (imgGem.attr("src", gemImageArray[randomPlacement]) === imgGem.attr("src")) {      
-                //if it's already been used 
-                console.log("You already have it.")
-
-            } else {
+           
                 $(".gem-container").append(
                     imgGem.attr("src", gemImageArray[randomPlacement])
                 );
@@ -64,7 +59,7 @@ $(document).ready(function () {
                 $(".gem-container").append(
                     imgGem.attr("data-crystal", randomNumber)
                 );
-            }
+
             // remove the path from the path array
             gemImageArray.splice(randomPlacement, 1);
         }
