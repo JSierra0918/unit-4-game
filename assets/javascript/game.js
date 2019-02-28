@@ -42,23 +42,21 @@ $(document).ready(function () {
 
         //Generate new number for every time an array gets called.   
         for (var i = 0; i < 4; i++) {
-
+           
+            //generate image and a random placement number
             var imgGem = $("<img>");
-            //generate image
             var randomPlacement = Math.floor(Math.random() * gemImageArray.length);
 
             // randomNumber from 1- 12 gets assigned to a gem
             randomNumber = getRandomInt(1, 12);
 
-            console.log(gemImageArray[randomPlacement]);
-           
-                $(".gem-container").append(
-                    imgGem.attr("src", gemImageArray[randomPlacement])
-                );
+            //assign src and data to img element
+            imgGem
+                .attr("src", gemImageArray[randomPlacement])
+                .attr("data-crystal", randomNumber);
 
-                $(".gem-container").append(
-                    imgGem.attr("data-crystal", randomNumber)
-                );
+             //append to DOM
+            $(".gem-container").append(imgGem);
 
             // remove the path from the path array
             gemImageArray.splice(randomPlacement, 1);
