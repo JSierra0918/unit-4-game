@@ -5,7 +5,7 @@ $(document).ready(function () {
     var wins = $("#wins");
     var losses = $("#losses");
     var total = $("#total");
-  
+
     var winCount = 0;
     var lossCount = 0;
     var totalCount = 0;
@@ -42,6 +42,7 @@ $(document).ready(function () {
 
         //Generate new number for every time an array gets called.   
         for (var i = 0; i < 4; i++) {
+
             var imgGem = $("<img>");
             //generate image
             var randomPlacement = Math.floor(Math.random() * gemImageArray.length);
@@ -50,20 +51,22 @@ $(document).ready(function () {
             randomNumber = getRandomInt(1, 12);
 
             console.log(gemImageArray[randomPlacement]);
+            
+            if (imgGem.attr("src", gemImageArray[randomPlacement]) === imgGem.attr("src")) {      
+                //if it's already been used 
+                console.log("You already have it.")
 
-            $(".gem-container").append(
-                imgGem.attr("src", gemImageArray[randomPlacement])
-            );
+            } else {
+                $(".gem-container").append(
+                    imgGem.attr("src", gemImageArray[randomPlacement])
+                );
 
-            $(".gem-container").append(
-                imgGem.attr("data-crystal", randomNumber)
-            );
-
-            //if it's already been used 
-
-            if (gemImageArray.indexOf(gemImageArray[i]) === -1){
-
+                $(".gem-container").append(
+                    imgGem.attr("data-crystal", randomNumber)
+                );
             }
+            // remove the path from the path array
+            gemImageArray.splice(randomPlacement, 1);
         }
     }
 
@@ -93,13 +96,13 @@ $(document).ready(function () {
     }
 
 
-        //The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
+    //The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
 
 
-        //Execute functions
-        initializeGame();
-        gemGenerator();
-    });
+    //Execute functions
+    initializeGame();
+    gemGenerator();
+});
 
 
 
