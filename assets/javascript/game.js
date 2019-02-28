@@ -5,14 +5,13 @@ $(document).ready(function () {
     var wins = $("#wins");
     var losses = $("#losses");
     var total = $("#total");
-    var imgGem = $("<img>");
+  
     var winCount = 0;
     var lossCount = 0;
     var totalCount = 0;
     var randomNumber;
     var gemImageArray = ["./assets/images/gem_0.svg", "./assets/images/gem_1.svg",
-        "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"
-    ]
+        "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"]
 
 
     //render the files
@@ -43,7 +42,7 @@ $(document).ready(function () {
 
         //Generate new number for every time an array gets called.   
         for (var i = 0; i < 4; i++) {
-
+            var imgGem = $("<img>");
             //generate image
             var randomPlacement = Math.floor(Math.random() * gemImageArray.length);
 
@@ -57,20 +56,50 @@ $(document).ready(function () {
             );
 
             $(".gem-container").append(
-                imgGem.attr("value", "data-" + randomNumber)
+                imgGem.attr("data-crystal", randomNumber)
             );
 
+            //if it's already been used 
+
+            if (gemImageArray.indexOf(gemImageArray[i]) === -1){
+
+            }
+        }
+    }
+
+    function gemGenerator2() {
+
+        return {
+            gem_0: {
+                points: Math.floor(Math.random() * 12) + 1,
+                imageUrl: "./assets/images/gem_0.svg"
+            },
+
+            gem_1: {
+                points: Math.floor(Math.random() * 12) + 1,
+                imageUrl: "./assets/images/gem_1.svg"
+            },
+
+            gem_2: {
+                points: Math.floor(Math.random() * 12) + 1,
+                imageUrl: "./assets/images/gem_2.svg"
+            },
+            gem_3: {
+                points: Math.floor(Math.random() * 12) + 1,
+                imageUrl: "./assets/images/gem_3.svg"
+
+            }
         }
     }
 
 
-    //The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
+        //The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
 
 
-    //Execute functions
-    initializeGame();
-    gemGenerator();
-});
+        //Execute functions
+        initializeGame();
+        gemGenerator();
+    });
 
 
 
