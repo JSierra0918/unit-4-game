@@ -35,13 +35,14 @@ $(document).ready(function () {
 
         randomNumber = getRandomInt(19, 120);
         totalCount = 0;
-
+        gemImageArray = ["./assets/images/gem_0.svg", "./assets/images/gem_1.svg",
+            "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"]
+            
         for (var i = 0; i < 4; i++) {
             $(".gem").remove();
         }
 
-        gemImageArray = ["./assets/images/gem_0.svg", "./assets/images/gem_1.svg",
-            "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"]
+
 
         gemGenerator();
         renderText();
@@ -106,14 +107,23 @@ $(document).ready(function () {
 
     function winCondition() {
         if (totalCount === randomNumber) {
-            alert("great job, you won!");
-            winCount++;
-            initializeGame();
+            setTimeout(function () {
+                alert("great job, you won!");
+                winCount++;
+                initializeGame();
 
-        } else if (totalCount > randomNumber) {
-            alert("you lost!");
-            lossCount++;
-            initializeGame();
+            }, 250);
+
+        }
+
+        else if (totalCount > randomNumber) {
+
+            setTimeout(function () {
+                alert("you lost!");
+                lossCount++;
+                initializeGame();
+            }, 250);
+
         }
 
     }
