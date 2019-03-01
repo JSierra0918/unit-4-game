@@ -34,6 +34,16 @@ $(document).ready(function () {
     function initializeGame() {
 
         randomNumber = getRandomInt(19, 120);
+        totalCount = 0;
+
+        for (var i = 0; i < 4; i++) {
+            $(".gem").remove();
+        }
+
+        gemImageArray = ["./assets/images/gem_0.svg", "./assets/images/gem_1.svg",
+            "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"]
+
+        gemGenerator();
         renderText();
     }
 
@@ -42,92 +52,89 @@ $(document).ready(function () {
 
         //Generate new number for every time an array gets called.   
         for (var i = 0; i < 4; i++) {
-           
+
             //generate image and a random placement number
             var imgGem = $("<img>");
             var randomPlacement = Math.floor(Math.random() * gemImageArray.length);
 
             // randomNumber from 1- 12 gets assigned to a gem
-            randomNumber = getRandomInt(1, 12);
+            var randomNumber = getRandomInt(1, 12);
 
             //assign src and data to img element
             imgGem
                 .attr("src", gemImageArray[randomPlacement])
-                .attr("data-crystal", randomNumber);
+                .attr("data-crystal", randomNumber)
+                .addClass("gem col-md-3");
 
-             //append to DOM
+
+            //append to DOM
             $(".gem-container").append(imgGem);
 
             // remove the path from the path array
             gemImageArray.splice(randomPlacement, 1);
         }
+
     }
 
-    function gemGenerator2() {
+    // function gemGenerator2() {
 
-        return {
-            gem_0: {
-                points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: "./assets/images/gem_0.svg"
-            },
+    //     return {
+    //         gem_0: {
+    //             points: Math.floor(Math.random() * 12) + 1,
+    //             imageUrl: "./assets/images/gem_0.svg"
+    //         },
 
-            gem_1: {
-                points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: "./assets/images/gem_1.svg"
-            },
+    //         gem_1: {
+    //             points: Math.floor(Math.random() * 12) + 1,
+    //             imageUrl: "./assets/images/gem_1.svg"
+    //         },
 
-            gem_2: {
-                points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: "./assets/images/gem_2.svg"
-            },
-            gem_3: {
-                points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: "./assets/images/gem_3.svg"
+    //         gem_2: {
+    //             points: Math.floor(Math.random() * 12) + 1,
+    //             imageUrl: "./assets/images/gem_2.svg"
+    //         },
+    //         gem_3: {
+    //             points: Math.floor(Math.random() * 12) + 1,
+    //             imageUrl: "./assets/images/gem_3.svg"
 
-            }
+    //         }
+    //     }
+    // }
+
+
+    //winning condition function
+
+    function winCondition() {
+        if (totalCount === randomNumber) {
+            alert("great job, you won!");
+            winCount++;
+            initializeGame();
+
+        } else if (totalCount > randomNumber) {
+            alert("you lost!");
+            lossCount++;
+            initializeGame();
         }
+
     }
-
-
-    //The player will have to guess the answer, just like in Word Guess. This time, though, the player will guess with numbers instead of letters. 
 
 
     //Execute functions
     initializeGame();
-    gemGenerator();
+
+
+    //on click function
+
+    $(".gem").on("click", function () {
+        //add to totalCount
+        totalCount += parseInt($(this).attr("data-crystal"));
+
+        console.log("CLick!!!");
+        winCondition();
+
+        renderText();
+    });
+
 });
 
 
-
-//Here's how the app works:
-
-
-
-// There will be four crystals displayed as buttons on the page.
-// The player will be shown a random number at the start of the game.
-
-// When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
-
-
-// Your game will hide this amount until the player clicks a crystal.
-// When they do click one, update the player's score counter.
-
-
-// The player wins if their total score matches the random number from the beginning of the game.
-// The player loses if their score goes above the random number.
-
-// The game restarts whenever the player wins or loses.
-
-
-// When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
-
-
-// The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
-
-
-
-// Option 1 Game design notes
-
-
-
-// Each crystal should have a random hidden value between 1 - 12.
