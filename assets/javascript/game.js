@@ -5,13 +5,14 @@ $(document).ready(function () {
     var wins = $("#wins");
     var losses = $("#losses");
     var total = $("#total");
-
+    var imgGem2 = $(".gem");
     var winCount = 0;
     var lossCount = 0;
     var totalCount = 0;
     var randomNumber;
     var gemImageArray = ["./assets/images/gem_0.svg", "./assets/images/gem_1.svg",
-        "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"]
+        "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"
+    ]
 
 
     //render the files
@@ -36,16 +37,17 @@ $(document).ready(function () {
         randomNumber = getRandomInt(19, 120);
         totalCount = 0;
         gemImageArray = ["./assets/images/gem_0.svg", "./assets/images/gem_1.svg",
-            "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"]
-            
+            "./assets/images/gem_2.svg", "./assets/images/gem_3.svg"
+        ]
+
+        // remove gems
         for (var i = 0; i < 4; i++) {
             $(".gem").remove();
         }
 
-
-
         gemGenerator();
         renderText();
+        onClickLogic();
     }
 
     //Generate random gems with numbers
@@ -65,8 +67,8 @@ $(document).ready(function () {
             imgGem
                 .attr("src", gemImageArray[randomPlacement])
                 .attr("data-crystal", randomNumber)
+                .attr("id","id-"+(i+1))
                 .addClass("gem col-md-3");
-
 
             //append to DOM
             $(".gem-container").append(imgGem);
@@ -108,43 +110,52 @@ $(document).ready(function () {
     function winCondition() {
         if (totalCount === randomNumber) {
             setTimeout(function () {
-                alert("great job, you won!");
+                
                 winCount++;
                 initializeGame();
+                alert("great job, you won!");
+            }, 100);
 
-            }, 250);
+        } else if (totalCount > randomNumber) {
 
-        }
+         setTimeout(function () {
+            
+            lossCount++;
+            initializeGame();
+            alert("you lost!");
+         }, 100);   
+            
 
-        else if (totalCount > randomNumber) {
-
-            setTimeout(function () {
-                alert("you lost!");
-                lossCount++;
-                initializeGame();
-            }, 250);
 
         }
 
     }
 
 
-    //Execute functions
-    initializeGame();
-
-
     //on click function
 
-    $(".gem").on("click", function () {
-        //add to totalCount
-        totalCount += parseInt($(this).attr("data-crystal"));
+    function onClickLogic() {
+        $(".gem").on("click", function () {
+            //add to totalCount
 
-        console.log("CLick!!!");
-        winCondition();
+            var crystalValue = parseInt($(this).attr("data-crystal"));
+            totalCount += crystalValue;
 
-        renderText();
-    });
+            console.log("CLick!!!");
+            winCondition();
+
+            renderText();
+        });
+
+    }
+
+    //Execute functions
+    initializeGame();
+    //  gemGenerator();
+    onClickLogic();
+
+
+
+
 
 });
-
-
