@@ -10,24 +10,40 @@ body {
     min-width: 100%; 
     min-height: 100%;
   }
+
+  .blackout {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.137);
+    z-index: 1;
+  }
   
 
 .header h1{
     font-size: 5rem;
     color: white;
+    /* text-decoration: underline; */
+ 
+} 
+
+.z-index{
+    z-index: 2;
 }
 
 img {
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     padding: 20px;
     position: relative;
+    z-index: 2;
 }
 
 img:hover {
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.418);
-    
+    background-color: rgba(136, 136, 179, 0.575);    
 }
 
   
@@ -35,4 +51,21 @@ img:hover {
     padding: 5rem;
     font-size: 10vw;
     background-color: rgba(136, 136, 179, 0.575);
+}
+
+.info-text {
+    background: #02020254;
+    color: #def4ff;
+}
+
+
+@media screen and (max-width: 768px) {
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    img {
+        height: 160px;
+        background: rgba(255, 255, 255, 0.144);
+    }
 }

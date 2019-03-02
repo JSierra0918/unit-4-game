@@ -68,7 +68,7 @@ $(document).ready(function () {
                 .attr("src", gemImageArray[randomPlacement])
                 .attr("data-crystal", randomNumber)
                 .attr("id","id-"+(i+1))
-                .addClass("gem col-md-3");
+                .addClass("gem col-md-3 col-6");
 
             //append to DOM
             $(".gem-container").append(imgGem);
@@ -114,7 +114,7 @@ $(document).ready(function () {
                 winCount++;
                 initializeGame();
                 alert("great job, you won!");
-            }, 100);
+            }, 50);
 
         } else if (totalCount > randomNumber) {
 
@@ -123,7 +123,7 @@ $(document).ready(function () {
             lossCount++;
             initializeGame();
             alert("you lost!");
-         }, 100);   
+         }, 50);   
             
 
 
