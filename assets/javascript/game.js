@@ -79,31 +79,6 @@ $(document).ready(function () {
 
     }
 
-    // function gemGenerator2() {
-
-    //     return {
-    //         gem_0: {
-    //             points: Math.floor(Math.random() * 12) + 1,
-    //             imageUrl: "./assets/images/gem_0.svg"
-    //         },
-
-    //         gem_1: {
-    //             points: Math.floor(Math.random() * 12) + 1,
-    //             imageUrl: "./assets/images/gem_1.svg"
-    //         },
-
-    //         gem_2: {
-    //             points: Math.floor(Math.random() * 12) + 1,
-    //             imageUrl: "./assets/images/gem_2.svg"
-    //         },
-    //         gem_3: {
-    //             points: Math.floor(Math.random() * 12) + 1,
-    //             imageUrl: "./assets/images/gem_3.svg"
-
-    //         }
-    //     }
-    // }
-
 
     //winning condition function
 
@@ -114,7 +89,7 @@ $(document).ready(function () {
                 winCount++;
                 initializeGame();
                 alert("great job, you won!");
-            }, 50);
+            }, 100);
 
         } else if (totalCount > randomNumber) {
 
@@ -123,7 +98,7 @@ $(document).ready(function () {
             lossCount++;
             initializeGame();
             alert("you lost!");
-         }, 50);   
+         }, 100);   
             
 
 
@@ -153,9 +128,6 @@ $(document).ready(function () {
     initializeGame();
     //  gemGenerator();
     onClickLogic();
-
-
-
 
 
 });
